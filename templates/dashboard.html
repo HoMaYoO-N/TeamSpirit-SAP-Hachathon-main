@@ -1,0 +1,538 @@
+<!-- Citation: https://github.com/topics/dashboard-template?o=desc&s=updated -->
+
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="js/Listeners.js"></script>
+    <meta name="author" content="Mazyar">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <title>Team Management</title>
+{% endblock %}
+{% block content %}
+
+<div class="font-inter grid grid-cols-5 max-w-screen-2xl mx-auto border-x-2 border-gray-100">
+   <!-- sidebar -->
+   <div class="col-span-1 h-screen px-7 py-8 bg-white border-r border-r-gray-100">
+      <div class="font-bold text-lg pl-6 flex items-center space-x-3">
+         <span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+               <path
+                  d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+            </svg>
+         </span>
+         <span>Community Hub</span>
+      </div>
+      <div class="mt-12">
+         <ul class="flex flex-col space-y-3 text-gray-500  text-sm sidebar-menu">
+            <li class="flex space-x-3 items-center px-6 py-3 rounded-lg ">
+               <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                  </svg>
+               </span>
+               <a href="/landing">
+               <span>Home</span>
+               </a>
+            </li>
+            <li class="flex space-x-3 items-center font-medium text-indigo-600 bg-indigo-100 px-6 py-3 rounded-lg">
+               <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                     <path
+                        d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                  </svg>
+               </span>
+               <a href="/dashboard">
+               <span>Dashboard</span>
+               </a>
+            </li>
+            <li class="flex space-x-3 items-center px-6 py-3 rounded-lg">
+               <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                  </svg>
+               </span>
+               <a href="/friends">
+               <span>Friends</span>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <!-- /sidebar -->
+   <!-- Main -->
+   <div class="col-span-4 bg-gray-100 ">
+      <!-- Nav -->
+      <nav class="px-8 py-6 bg-white flex items-center justify-between">
+         <div class="">
+            <span class="text-gray-600">Hi</span>
+            <span class="text-gray-800 font-bold ml-1">{{values[0].fname}}</span>
+            <div class="text-indigo-500 text-xs mt-1 font-semibold">{{values[0].occupation}}</div>
+         </div>
+         <div class="flex items-center text-gray-500 space-x-8">
+            <div class="relative items-center content-center flex">
+               <input type="text"
+                  class="text-xs bg-gray-100 pl-4 pr-10 py-3 rounded-md w-64 outline-none focus:ring-1"
+                  placeholder="Search for anything ...">
+               <span class="text-gray-400 absolute right-4 cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+               </span>
+            </div>
+            <a href="#">
+               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                     d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+               </svg>
+            </a>
+            <a href="#" class="relative h-5 w-5">
+               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                     d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+               </svg>
+               <svg xmlns="http://www.w3.org/2000/svg" class="h-2 w-2 fill-red-600 top-0.5 right-0.5 absolute stroke stroke-white" viewBox="0 0 24 24">
+                  <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+               </svg>
+            </a>
+            <a href="/logout" class="">
+            <img class="rounded-full w-10 h-10 border shadow shadow-gray-300 border-blue-200"
+               src="https://www.pngitem.com/pimgs/m/252-2523180_transparent-clipart-windows-logout-icon-png-red-png.png" alt="" srcset="">
+            </a>
+         </div>
+      </nav>
+      <!-- /Nav -->
+      <!-- Main Section -->
+      <section class="px-8 py-6">
+      <!-- attendance -->
+      <div class="bg-white rounded-2xl w-full px-6 py-4 flex items-center text-gray-800 justify-between ">
+         <div class="flex items-center ">
+            <div>
+               <div class="text-xs font-semibold">Weather</div>
+               <div class="text-xxs text-gray-500 mt-1">28 July 2021</div>
+            </div>
+            <div class="bg-gray-100 px-5 pr-6 py-2 ml-5 rounded-l-lg font-semibold text-gray-700">Sunny
+            </div>
+            <div
+               class="bg-emerald-500 hover:bg-emerald-600 cursor-pointer px-4 py-2  -ml-2 rounded-lg font-semibold text-gray-50 text-xxs self-stretch flex items-center tracking-wide">
+               Refresh
+            </div>
+            <div class="ml-12 flex items-center self-stretch ">
+               <span class="text-xs font-semibold">Status</span>
+               <div
+                  class="bg-gray-100 px-5  py-2 ml-3 rounded-lg font-semibold text-gray-700 flex items-center  self-stretch justify-between">
+                  <span class="text-xxs font-semibold inline-flex items-center">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-2 w-2 fill-green-500 mr-1"
+                        viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+                     </svg>
+                     <span class="ml-1 w-20">Available</span>
+                  </span>
+                  <span>
+                     <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5  stroke-gray-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                           d="M19 9l-7 7-7-7" />
+                     </svg>
+                  </span>
+               </div>
+            </div>
+         </div>
+         <div class="flex items-center space-x-2 text-xs bg-gray-800 hover:bg-gray-900  cursor-pointer text-gray-50 px-6 py-3 rounded-lg">
+            <span>
+            8:30 am
+            </span>
+         </div>
+      </div>
+      <!-- /attendance -->
+      <section class="grid grid-cols-3 gap-x-6 mt-6">
+         <!-- Members -->
+         <section class="col-span-2">
+            <div class="text-xs flex items-center justify-between w-full">
+               <span class="font-semibold">Active Friends (3)</span>
+               <!-- <a href="#" class="text-indigo-400 font-medium text-xs">View all</a> -->
+            </div>
+            <div class="grid grid-cols-4 gap-x-4 mt-4 ">
+               <div
+                  class="relative aspect-square rounded-2xl bg-white flex justify-center items-center flex-col text-gray-500 text-sm
+                  ring-2 ring-indigo-200">
+                  <a href="#" class="absolute top-3 right-3 text-gray-400 hover:text-indigo-500">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                           d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                     </svg>
+                  </a>
+                  <span class="relative">
+                     <img class="rounded-full w-14 h-14 shadow-lg border border-white"
+                        src="https://api.lorem.space/image/face?w=32&amp;h=32&amp;hash=zsfj8cck"
+                        alt="" srcset="">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3  fill-green-500 stroke-white stroke-2 absolute bottom-3 right-1" viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+                     </svg>
+                  </span>
+                  <div class="">Alex Aldrin</div>
+                  <div class="text-xxs text-gray-400 mt-1">Web Developer</div>
+               </div>
+               <div
+                  class="relative aspect-square rounded-2xl bg-white flex justify-center items-center flex-col text-gray-500 text-sm
+                  hover:ring-2 hover:ring-indigo-200">
+                  <a href="#" class="absolute top-3 right-3 text-gray-400 hover:text-indigo-500">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                           d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                     </svg>
+                  </a>
+                  <span class="relative">
+                     <img src="https://api.lorem.space/image/face?w=44&h=44&hash=ic7a5vp4"
+                        class="w-14 h-14 rounded-full mb-3" alt="" srcset="">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3  fill-green-500 stroke-white stroke-2 absolute bottom-3 right-1" viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+                     </svg>
+                  </span>
+                  <div class="">Mac Bean</div>
+                  <div class="text-xxs text-gray-400 mt-1">Product Designer</div>
+               </div>
+               <div
+                  class="relative aspect-square rounded-2xl bg-white flex justify-center items-center flex-col text-gray-500 text-sm
+                  hover:ring-2 hover:ring-indigo-200">
+                  <a href="#" class="absolute top-3 right-3 text-gray-400 hover:text-indigo-500">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                           d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                     </svg>
+                  </a>
+                  <span class="relative">
+                     <img src="https://api.lorem.space/image/face?w=44&h=44&hash=ic7advp4"
+                        class="w-14 h-14  rounded-full mb-3" alt="" srcset="">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3  fill-green-500 stroke-white stroke-2 absolute bottom-3 right-1" viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+                     </svg>
+                  </span>
+                  <div class="">Jane Doe</div>
+                  <div class="text-xxs text-gray-400 mt-1">Visual Designer</div>
+               </div>
+            </div>
+            <div class="grid grid-cols-5 gap-x-4 mt-6 ">
+
+               <!-- activities -->
+               <div class="col-span-3 ">
+                  <div class="font-semibold text-xs ">Activity Calendar</div>
+                  <div class="relative mt-4 bg-white w-full rounded-2xl">
+                     <div
+                        class="absolute top-2 right-4 inline-flex items-center text-xs text-gray-500 space-x-1">
+                     </div>
+                     <div class="px-6 pt-9 pb-6 h-70">
+                        <div class="d-grid gap-1">
+                           <div class="cal">
+                              <div class="cal-month">
+                                 <button class="btn cal-btn" type="button">
+                                    <svg class="bi" width="16" height="16">
+                                       <use xlink:href="#arrow-left-short"/>
+                                    </svg>
+                                 </button>
+                                 <strong class="cal-month-name">August</strong>
+                                 <select class="form-select cal-month-name d-none">
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option selected value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                 </select>
+                                 <button class="btn cal-btn" type="button">
+                                    <svg class="bi" width="16" height="16">
+                                       <use xlink:href="#arrow-right-short"/>
+                                    </svg>
+                                 </button>
+                              </div>
+                              <div class="cal-weekdays text-muted">
+                                 <div class="cal-weekday">Sun</div>
+                                 <div class="cal-weekday">Mon</div>
+                                 <div class="cal-weekday">Tue</div>
+                                 <div class="cal-weekday">Wed</div>
+                                 <div class="cal-weekday">Thu</div>
+                                 <div class="cal-weekday">Fri</div>
+                                 <div class="cal-weekday">Sat</div>
+                              </div>
+                              <div class="cal-days">
+                                 <button class="btn cal-btn" disabled type="button">30</button>
+                                 <button class="btn cal-btn" disabled type="button">31</button>
+                                 <button class="btn cal-btn" type="button">1</button>
+                                 <button class="btn cal-btn" type="button">2</button>
+                                 <button class="btn cal-btn" type="button">3</button>
+                                 <button class="btn cal-btn" type="button">4</button>
+                                 <button class="btn cal-btn" type="button">5</button>
+                                 <button class="btn cal-btn" type="button">6</button>
+                                 <button class="btn cal-btn" type="button">7</button>
+                                 <button class="btn cal-btn" type="button">8</button>
+                                 <button class="btn cal-btn" type="button">9</button>
+                                 <button class="btn cal-btn" type="button">10</button>
+                                 <button class="btn cal-btn" type="button">11</button>
+                                 <button style="background-color:pink;" class="btn cal-btn" type="button">12</button>
+                                 <button class="btn cal-btn" type="button">13</button>
+                                 <button class="btn cal-btn" type="button">14</button>
+                                 <button class="btn cal-btn" type="button">15</button>
+                                 <button class="btn cal-btn" type="button">16</button>
+                                 <button class="btn cal-btn" type="button">17</button>
+                                 <button class="btn cal-btn" type="button">18</button>
+                                 <button class="btn cal-btn" type="button">19</button>
+                                 <button class="btn cal-btn" type="button">20</button>
+                                 <button style="background-color:pink;" class="btn cal-btn" type="button">21</button>
+                                 <button class="btn cal-btn" type="button">22</button>
+                                 <button class="btn cal-btn" type="button">23</button>
+                                 <button class="btn cal-btn" type="button">24</button>
+                                 <button class="btn cal-btn" type="button">25</button>
+                                 <button class="btn cal-btn" type="button">26</button>
+                                 <button class="btn cal-btn" type="button">27</button>
+                                 <button class="btn cal-btn" type="button">28</button>
+                                 <button class="btn cal-btn" type="button">29</button>
+                                 <button style="background-color:pink;" class="btn cal-btn" type="button">30</button>
+                                 <button class="btn cal-btn" type="button">31</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- /activities -->
+               <!-- meetings -->
+               <div class="col-span-2">
+                  <div class="font-semibold text-xs">Happening today(3)</div>
+                  <div class="mt-4 flex flex-col space-y-4 overflow-hidden h-72 overflow-y-auto no-scrollbar">
+                     <div class="bg-white rounded-2xl p-5 flex space-x-4">
+                        <div
+                           class="flex w-10 h-10  text-center items-center justify-center bg-purple-600 rounded-full text-white text-xs">
+                           FUI
+                        </div>
+                        <div class="flex-1">
+                           <div class="text-sm text-gray-500">Flow UI discussion</div>
+                           <div class="text-xxs text-gray-400 mt-1">3.00 pm - 4.00 pm</div>
+                           <div class="flex items-center justify-between mt-5">
+                              <div class="flex -space-x-1 items-center">
+                                 <img class="rounded-full w-7 h-7 shadow-lg border border-white"
+                                    src="https://api.lorem.space/image/face?w=32&amp;h=32&amp;hash=zsfj1cck"
+                                    alt="" srcset="">
+                                 <img class="rounded-full w-7 h-7 shadow-lg border border-white"
+                                    src="https://api.lorem.space/image/face?w=32&amp;h=32&amp;hash=zsrj8cck"
+                                    alt="" srcset="">
+                                 <img class="rounded-full w-7 h-7 shadow-lg border border-white"
+                                    src="https://api.lorem.space/image/face?w=32&amp;h=32&amp;hash=zsfj8cck"
+                                    alt="" srcset="">
+                              </div>
+                              <!-- <a href="#" class="text-xs text-indigo-400">view</a> -->
+                           </div>
+                        </div>
+                     </div>
+                     <div class="bg-white rounded-2xl p-5 flex space-x-4">
+                        <div
+                           class="flex w-10 h-10  text-center items-center justify-center bg-emerald-600 rounded-full text-white text-xs">
+                           EH
+                        </div>
+                        <div class="flex-1">
+                           <div class="text-sm text-gray-500">Email HTML discussion</div>
+                           <div class="text-xxs text-gray-400 mt-1">4.30 pm - 5.00 pm</div>
+                           <div class="flex items-center justify-between mt-5">
+                              <div class="flex -space-x-1 items-center">
+                                 <img class="rounded-full w-7 h-7 shadow-lg border border-white"
+                                    src="https://api.lorem.space/image/face?w=32&amp;h=32&amp;hash=zsfj1cck"
+                                    alt="" srcset="">
+                                 <img class="rounded-full w-7 h-7 shadow-lg border border-white"
+                                    src="https://api.lorem.space/image/face?w=32&amp;h=32&amp;hash=zsr38cck"
+                                    alt="" srcset="">
+                                 <img class="rounded-full w-7 h-7 shadow-lg border border-white"
+                                    src="https://api.lorem.space/image/face?w=32&amp;h=32&amp;hash=zsfj1cck"
+                                    alt="" srcset="">
+                              </div>
+                              <!-- <a href="#" class="text-xs text-indigo-400">view</a> -->
+                           </div>
+                        </div>
+                     </div>
+                     <div class="bg-white rounded-2xl p-5 flex space-x-4">
+                        <div
+                           class="flex w-10 h-10  text-center items-center justify-center bg-yellow-600 rounded-full text-white text-xs">
+                           ET
+                        </div>
+                        <div class="flex-1">
+                           <div class="text-sm text-gray-500">Email template</div>
+                           <div class="text-xxs text-gray-400 mt-1">3.00 pm - 4.00 pm</div>
+                           <div class="flex items-center justify-between mt-5">
+                              <div class="flex -space-x-1 items-center">
+                                 <img class="rounded-full w-7 h-7 shadow-lg border border-white"
+                                    src="https://api.lorem.space/image/face?w=32&amp;h=32&amp;hash=zsfj1cck"
+                                    alt="" srcset="">
+                                 <img class="rounded-full w-7 h-7 shadow-lg border border-white"
+                                    src="https://api.lorem.space/image/face?w=32&amp;h=32&amp;hash=zstj8cck"
+                                    alt="" srcset="">
+                                 <img class="rounded-full w-7 h-7 shadow-lg border border-white"
+                                    src="https://api.lorem.space/image/face?w=32&amp;h=32&amp;hash=zsfjvcck"
+                                    alt="" srcset="">
+                              </div>
+                              <!-- <a href="#" class="text-xs text-indigo-400">view</a> -->
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- /meetings -->
+            </div>
+         </section>
+         <!-- /Members -->
+         <!-- profile -->
+         <section class="col-span-1 bg-white h-full rounded-2xl px-6 pt-10 pb-6">
+            <div class="mx-auto w-full text-center flex justify-center">
+               <div
+                  class="relative aspect-square rounded-2xl bg-white flex justify-center items-center flex-col text-gray-500 text-sm">
+                  <span>
+                  <img src="https://api.lorem.space/image/face?w=44&h=44&hash=7F5AE56A" class="w-20 h-20 rounded-full mb-4 border border-blue-200"
+                     alt="" srcset="">
+                  </span>
+                  <div class="font-semibold">{{values[0].fname}} {{values[0].lname}}</div>
+                  <div class="text-xxs text-gray-400 mt-1.5"> {{values[0].occupation}} </div>
+               </div>
+            </div>
+            <div class="w-full mt-10">
+               <div class="z-20 w-full text-center">
+                  <span
+                     class="w-1/2 bg-gray-800 inline-block mx-auto text-xxs text-gray-50 px-2 py-2 text-center rounded-lg whitespace-nowrap ">
+                  Ping Pong</span>
+               </div>
+               <div
+                  class="z-10 bg-gray-100 rounded-2xl px-5 py-6 -mt-4 flex items-center justify-between space-x-4 ">
+                  <span class="relative">
+                     <img src="https://api.lorem.space/image/face?w=44&h=44&hash=BDC01094"
+                        class="w-12 h-12 rounded-full " alt="" srcset="">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3  fill-green-500 stroke-white stroke-2 absolute bottom-0 right-0" viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+                     </svg>
+                  </span>
+                  <span class="relative">
+                     <img src="https://api.lorem.space/image/face?w=44&h=44&hash=4F32C4CF"
+                        class="w-12 h-12 rounded-full " alt="" srcset="">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3  fill-red-500 stroke-white stroke-2 absolute bottom-0 right-0" viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+                     </svg>
+                  </span>
+                  <span class="relative">
+                     <img src="https://api.lorem.space/image/face?w=44&h=44&hash=225E6693"
+                        class="w-12 h-12 rounded-full " alt="" srcset="">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3  fill-red-500 stroke-white stroke-2 absolute bottom-0 right-0" viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+                     </svg>
+                  </span>
+                  <a href="#" class="text-gray-500 hover:text-indigo-500">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 " fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                           d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                        </path>
+                     </svg>
+                  </a>
+               </div>
+            </div>
+            <div class="w-full mt-10">
+               <div class="z-20 w-full text-center">
+                  <span
+                     class="w-1/2 bg-gray-800 inline-block mx-auto text-xxs text-gray-50 px-2 py-2 text-center rounded-lg whitespace-nowrap ">
+                  Fooseball</span>
+               </div>
+               <div
+                  class="z-10 bg-gray-100 rounded-2xl px-5 py-6 -mt-4 flex items-center justify-between space-x-4 ">
+                  <span class="relative">
+                     <img src="https://api.lorem.space/image/face?w=44&h=44&hash=9D9539E7"
+                        class="w-12 h-12 rounded-full " alt="" srcset="">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3  fill-red-500 stroke-white stroke-2 absolute bottom-0 right-0" viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+                     </svg>
+                  </span>
+                  <span class="relative">
+                     <img src="https://api.lorem.space/image/face?w=44&h=44&hash=A89D0DE6"
+                        class="w-12 h-12 rounded-full " alt="" srcset="">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3  fill-green-500 stroke-white stroke-2 absolute bottom-0 right-0" viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+                     </svg>
+                  </span>
+                  <span class="relative">
+                     <img src="https://api.lorem.space/image/face?w=150&h=150&hash=B0E33EF4"
+                        class="w-12 h-12 rounded-full " alt="" srcset="">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3  fill-red-500 stroke-white stroke-2 absolute bottom-0 right-0" viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+                     </svg>
+                  </span>
+                  <a href="#" class="text-gray-500 hover:text-indigo-500">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 " fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                           d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                        </path>
+                     </svg>
+                  </a>
+               </div>
+            </div>
+            <div class="w-full mt-10">
+               <div class="z-20 w-full text-center">
+                  <span
+                     class="w-1/2 bg-gray-800 inline-block mx-auto text-xxs text-gray-50 px-2 py-2 text-center rounded-lg whitespace-nowrap ">
+                  Video Games</span>
+               </div>
+               <div
+                  class="z-10 bg-gray-100 rounded-2xl px-5 py-6 -mt-4 flex items-center justify-between space-x-4 ">
+                  <span class="relative">
+                     <img src="https://api.lorem.space/image/face?w=44&h=44&hash=ic7d5vp4"
+                        class="w-12 h-12 rounded-full " alt="" srcset="">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3  fill-green-500 stroke-white stroke-2 absolute bottom-0 right-0" viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+                     </svg>
+                  </span>
+                  <span class="relative">
+                     <img src="https://api.lorem.space/image/face?w=150&h=150&hash=B0E33EF4"
+                        class="w-12 h-12 rounded-full " alt="" srcset="">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3  fill-red-500 stroke-white stroke-2 absolute bottom-0 right-0" viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+                     </svg>
+                  </span>
+                  <span class="relative">
+                     <img src="https://api.lorem.space/image/face?w=150&h=150&hash=4F32C4CF"
+                        class="w-12 h-12 rounded-full " alt="" srcset="">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3  fill-red-500 stroke-white stroke-2 absolute bottom-0 right-0" viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2z"></path>
+                     </svg>
+                  </span>
+                  <a href="#" class="text-gray-500 hover:text-indigo-500">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 " fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                           d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                        </path>
+                     </svg>
+                  </a>
+               </div>
+            </div>
+         </section>
+         <!-- /profile -->
+      </section>
+      <!-- /Main Section -->
+   </div>
+</div>
+    <!-- /Main -->
+{% endblock %}

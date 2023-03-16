@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  {% block head %}
+
+  {% endblock %}
+
+  <header>
+    <div id="mainNavigation">
+      <nav role="navigation">
+        <div class="py-3 text-center"><img src="{{url_for('static', filename='Logo_SAP.jpg')}}" align="left" alt="" class="invert" width="200" height="75"></div>
+      </nav>
+      <div class="navbar-expand-md">
+        <div class="navbar-dark text-center my-2"><button class="navbar-toggler w-75" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span><span class="align-middle">Menu</span></button></div>
+        <div class="text-center mt-3 collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav mx-auto ">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Book Hotel</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Destinations</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Policy</a></li>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Company </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Blog</a></li>
+                <li><a class="dropdown-item" href="#">About Us</a></li>
+                <li><a class="dropdown-item" href="#">Contact us</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+  <body>
+    {% block content %}
+
+    {% endblock %}
+  </body>
+<!-- Footer -->
+  <footer class="bg-dark text-left text-white" id="footer">
+    <!-- Grid container -->
+    <div class="container p-3">
+      <section class="">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-3">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="https://community.sap.com" class="text-white">SAP Community</a>
+              </li>
+              <li>
+                <a href="https://insights.sap.com" class="text-white">SAP Insights</a>
+              </li>
+              <li>
+                <a href="https://developers.sap.com" class="text-white">Developer</a>
+              </li>
+              <li>
+                <a href="https://support.sap.com/en/index.html" class="text-white">Support Portal</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+          <!--Grid column-->
+          <div class="col-lg-3">
+            <h5>About SAP</h5>
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="https://www.sap.com/corporate/en/legal/privacy/careers.english.html" class="text-white">News and Press</a>
+              </li>
+              <li>
+                <a href="https://www.sap.com/about/events.html" class="text-white">Events</a>
+              </li>
+              <li>
+                <a href="https://www.sap.com/corporate/en/legal/privacy/careers.english.html" class="text-white">Newsletter</a>
+              </li>
+              <li>
+                <a href="https://www.sap.com/about/customer-stories.html" class="text-white">Customer Stories</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+          <!--Grid column-->
+          <div class="col-lg-3">
+            <h5>Site Information</h5>
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="https://www.sap.com/corporate/en/legal/privacy.html" class="text-white">Privacy</a>
+              </li>
+              <li>
+                <a href="https://www.sap.com/site-map.html" class="text-white">Sitemap</a>
+              </li>
+              <li>
+                <a href="https://www.sap.com/corporate/en/legal/trademark.html" class="text-white">Trademark</a>
+              </li>
+              <li>
+                <a href="https://www.sap.com/corporate/en/legal/terms-of-use.html" class="text-white">Terms of Use</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+          <!--Grid column-->
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </section>
+    </div>
+    <!-- Grid container -->
+  </footer>
+</html>

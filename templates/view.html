@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %} Card !!{% endblock %}
+{% block content %}
+    {% for item in values %}
+        <p> fname: {{item.fname}}, lname: {{item.lname}}, Email: {{item.email}}, Password: {{item.password}}, Occupation: {{item.occupation}} </p>
+    {% endfor %}
+{% endblock %}
